@@ -1,23 +1,821 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <title>Home</title>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width" />
-    <!--
-      Need a visual blank slate?
-      Remove all code in `styles.css`!
-    -->
-    <link rel="stylesheet" href="styles.css" />
-    <script type="module" src="script.js"></script>
-  </head>
-  <body>
-    <nav>
-      <a href="/" aria-current="page">Home</a>
-      <a href="/page2.html">Other page</a>
-    </nav>
-    <main>
-      <h1>Home page</h1>
-    </main>
-  </body>
-</html>
+
+
+  <style>
+    /* 폰트 및 디자인 테마 설정 (부드럽고 다채로운 뉴트럴 가든 테마) */
+    body { 
+      font-family: 'Noto Sans KR', sans-serif; 
+      line-height: 1.8; 
+      margin: 0; 
+      padding: 0; 
+      background-color: #f7f6f3; 
+      color: #2c3e50; 
+    }
+    
+    header { 
+      background: linear-gradient(135deg, #1f3e5a, #3b7a57); 
+      color: #ffffff; 
+      text-align: center; 
+      padding: 70px 20px; 
+      border-radius: 0 0 24px 24px; 
+      position: relative; 
+      box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+    }
+    
+    h1, h2, h3 { 
+      color: #1f3e5a; 
+      font-weight: 700; 
+    }
+    
+    h1 { 
+      font-size: 2.6rem; 
+      margin-bottom: 15px; 
+      letter-spacing: -1px;
+    }
+    
+    header p { 
+      font-size: 1.2rem; 
+      opacity: 0.95; 
+      margin-top: 10px;
+    }
+    
+    section { 
+      max-width: 1000px; 
+      margin: 35px auto; 
+      padding: 40px; 
+      background: #ffffff; 
+      border-radius: 16px; 
+      box-shadow: 0 4px 20px rgba(0,0,0,0.02); 
+    }
+    
+    nav { 
+      max-width: 1000px; 
+      margin: 25px auto; 
+      background: #ffffff; 
+      border-radius: 14px; 
+      box-shadow: 0 2px 10px rgba(0,0,0,0.02); 
+    }
+    
+    nav ul { 
+      display: flex; 
+      flex-wrap: wrap; 
+      justify-content: space-around; 
+      list-style: none; 
+      padding: 10px; 
+      margin: 0; 
+    }
+    
+    nav ul li a { 
+      display: block; 
+      padding: 12px 15px; 
+      text-decoration: none; 
+      color: #4a5568; 
+      font-weight: 500; 
+      transition: all 0.3s ease; 
+    }
+    
+    nav ul li a:hover { 
+      color: #3b7a57; 
+      background-color: #f0f7f4; 
+      border-radius: 8px; 
+    }
+
+    /* CTA 및 버튼 스타일 */
+    .btn-cta {
+      display: inline-block;
+      padding: 15px 35px;
+      background: #d97706; 
+      color: #ffffff;
+      font-weight: 700;
+      font-size: 1.15rem;
+      border-radius: 50px;
+      box-shadow: 0 6px 15px rgba(217, 119, 6, 0.3);
+      transition: all 0.3s ease;
+      text-align: center;
+      margin-top: 25px;
+      cursor: pointer;
+      border: none;
+      text-decoration: none;
+    }
+    
+    .btn-cta:hover {
+      background: #b45309;
+      transform: translateY(-2px);
+      box-shadow: 0 8px 20px rgba(217, 119, 6, 0.4);
+    }
+
+    /* 이미지 데코레이션 스타일 */
+    .content-image { 
+      width: 100%; 
+      height: auto; 
+      border-radius: 14px; 
+      margin: 25px 0; 
+      box-shadow: 0 6px 18px rgba(0,0,0,0.04); 
+    }
+
+    /* 표 정교화 스타일 */
+    table { 
+      width: 100%; 
+      border-collapse: separate; 
+      border-spacing: 0; 
+      margin: 25px 0; 
+      border: 1px solid #e2e8f0; 
+      border-radius: 12px; 
+      overflow: hidden; 
+    }
+    
+    th, td { 
+      padding: 18px; 
+      text-align: left; 
+      border-bottom: 1px solid #e2e8f0; 
+    }
+    
+    th { 
+      background: #edf2f7; 
+      color: #1f3e5a; 
+      font-weight: 700; 
+      border-top: none; 
+    }
+    
+    tr:last-child td { 
+      border-bottom: none; 
+    }
+    
+    tr:nth-child(even) { 
+      background-color: #fcfcfb; 
+    }
+
+    /* CSS 기반 차트 프레임워크 */
+    .chart-container { 
+      background: #fdfdfd; 
+      padding: 25px; 
+      border: 1px solid #edf2f7; 
+      border-radius: 12px; 
+      margin: 25px 0; 
+    }
+    
+    .bar-chart { 
+      display: grid; 
+      grid-template-columns: repeat(3, 1fr); 
+      gap: 15px; 
+      margin-top: 20px; 
+    }
+    
+    .bar-item { 
+      text-align: center; 
+      background: #f8fafc; 
+      border-radius: 10px; 
+      padding: 20px 15px; 
+      box-shadow: 0 2px 8px rgba(0,0,0,0.01); 
+      border-top: 4px solid #3b7a57; 
+    }
+    
+    .bar-item strong { 
+      display: block; 
+      font-size: 1.3rem; 
+      margin-bottom: 8px; 
+      color: #1f3e5a; 
+    }
+    
+    .bar-label { 
+      font-size: 0.95rem; 
+      color: #4a5568; 
+    }
+
+    /* 사용자 체류시간 확대를 위한 실시간 요금 계산기 폼 */
+    .calc-container { 
+      background: #f0f7f4; 
+      padding: 35px; 
+      border-radius: 16px; 
+      border: 1px solid #cbd5e1; 
+      margin: 30px 0; 
+    }
+    
+    .calc-container h3 { 
+      margin-top: 0; 
+      color: #1f3e5a; 
+    }
+    
+    label { 
+      display: block; 
+      font-weight: 700; 
+      margin-bottom: 8px; 
+      color: #2d3748; 
+    }
+    
+    input[type="text"], input[type="number"], select, textarea { 
+      width: 100%; 
+      padding: 14px; 
+      margin-bottom: 18px; 
+      border: 1px solid #cbd5e1; 
+      border-radius: 8px; 
+      box-sizing: border-box; 
+      font-size: 1rem; 
+      transition: all 0.3s; 
+      background-color: #ffffff;
+    }
+    
+    input:focus, select:focus, textarea:focus { 
+      border-color: #3b7a57; 
+      outline: none; 
+      box-shadow: 0 0 8px rgba(59, 122, 87, 0.2); 
+    }
+
+    /* 인터랙티브 체크리스트 */
+    .checklist-container {
+      background: #fefefe;
+      border: 1px solid #e2e8f0;
+      border-radius: 12px;
+      padding: 25px;
+      margin: 25px 0;
+    }
+    
+    .checklist-item {
+      display: flex;
+      align-items: center;
+      margin-bottom: 12px;
+      cursor: pointer;
+    }
+    
+    .checklist-item input[type="checkbox"] {
+      width: 20px;
+      height: 20px;
+      margin-right: 12px;
+      cursor: pointer;
+    }
+
+    /* 기타 텍스트 세부 가독성 설정 */
+    ul { list-style-type: square; margin-left: 20px; padding-left: 10px; }
+    ol { margin-left: 20px; padding-left: 10px; }
+    blockquote { 
+      border-left: 5px solid #3b7a57; 
+      padding: 15px 25px; 
+      margin: 30px 0; 
+      background-color: #f7faf9; 
+      color: #334155; 
+      font-style: italic; 
+    }
+    
+    .highlight { 
+      background-color: #fef3c7; 
+      padding: 2px 6px; 
+      border-radius: 4px; 
+      font-weight: 700; 
+      color: #b45309; 
+    }
+    
+    .anchor { 
+      display: block; 
+      height: 0px; 
+      visibility: hidden; 
+    }
+
+    /* 반응형 레이아웃 디자인 */
+    @media (max-width: 768px) {
+      body { padding: 5px; }
+      header { padding: 45px 15px; }
+      section { margin: 15px auto; padding: 25px; }
+      h1 { font-size: 1.9rem; }
+      nav ul { flex-direction: column; }
+      nav ul li a { border-bottom: 1px solid #edf2f7; text-align: center; }
+      .bar-chart { grid-template-columns: 1fr; }
+      .btn-cta { width: 100%; padding: 15px 0; font-size: 1rem; }
+      th, td { padding: 12px; font-size: 0.9rem; }
+    }
+  </style>
+
+  <!-- Schema.org 마크업(JSON-LD) - LLM 및 AI 검색엔진 최적화 수집용 구조화 데이터 -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FinancialProduct",
+    "name": "자동차보험 1인 추가 가입 안내 서비스",
+    "description": "2026년 기준 연령별 및 국산/수입 차량 모델별 자동차보험 1인 추가 예상 금액, 요금제 계산기, 신청 방법 및 다이렉트 할인 혜택 분석 정보 제공.",
+    "category": "Car Insurance Driver Addition Service",
+    "provider": {
+      "@type": "Organization",
+      "name": "다이렉트 자동차보험 비교 분석 센터",
+      "url": "https://ins.reliabledone.com"
+    },
+    "areaServed": {
+      "@type": "Country",
+      "name": "KR"
+    },
+    "offers": {
+      "@type": "Offer",
+      "priceCurrency": "KRW",
+      "price": "0",
+      "description": "실시간 1인 추가 예상 요금 비교 및 온라인 가입 가이드 상담 무료 제공"
+    }
+  }
+  </script>
+</head>
+
+<body>
+  <header>
+    <h1>자동차보험 1인 추가 비용 비교 및 연령별 예상 금액 가이드</h1>
+    <p>지정 1인 추가부터 단기 임시운전자특약까지, 2026년 최신 가격 조건과 다이렉트 할인 방법 총정리</p>
+    <a href="#consulting" class="btn-cta">실시간 연령별 견적 및 다이렉트 상담받기</a>
+  </header>
+
+  <nav aria-label="페이지 내 빠른 이동">
+    <ul>
+      <li><a href="#intro">1인 추가 핵심 개념</a></li>
+      <li><a href="#calculator">실시간 요금 계산기</a></li>
+      <li><a href="#model-prices">연령대별 & 차종별 비용 분석</a></li>
+      <li><a href="#comparison">추가 방식 차이점 비교</a></li>
+      <li><a href="#brands">주요 보험사 가입 방법</a></li>
+      <li><a href="#community">커뮤니티 내돈내산 후기</a></li>
+      <li><a href="#checklist">가입 전 필수 체크리스트</a></li>
+      <li><a href="#faq">자주 묻는 질문 FAQ</a></li>
+    </ul>
+  </nav>
+
+  <section id="intro">
+    <span id="intro-anchor" class="anchor"></span>
+    <h2>자동차보험 1인 추가란 무엇인가요?</h2>
+    <p>
+      가족, 친구, 혹은 직장 동료가 내 차량을 일정 기간 또는 지속적으로 운전해야 할 때, 사고 발생 시 온전한 보장을 받기 위해 기존 계약에 운전자를 추가하는 제도를 의미합니다. 
+      기존의 일인 한정 운전 범위에서 탈피하여 운전자의 범위를 지정 일인으로 확대하거나 임시운전자특약을 통해 일시적으로 허용하는 방식이 보편적입니다.
+    </p>
+    <p>
+      많은 운전자들이 기존에 설정된 차량 연령 제한이나 본인 한정 특약을 깜빡 잊고 타인에게 운전대를 맡겼다가 사고 발생 시 자칫 거대한 개인 채무 부담을 지는 불상사를 겪기도 합니다. 
+      이런 위험을 방지하기 위해서는 차량 모델에 적합한 가입 종류를 선정하고, 추가할 운전자의 실제 만나이와 운전 경력을 정확하게 반영하여 실시간 요금을 산정해보는 과정이 필수적입니다.
+    </p>
+    <p>
+      특히 2026년 들어 모바일 다이렉트 어플과 간편 금융 어플의 발전으로 인하여, 과거에 비해 훨씬 싼곳을 찾고 최저가 견적을 비교하는 속도가 눈에 띄게 빨라졌습니다. 
+      가입 절차를 밟기 전에 본인 차량의 보험 조건과 연동되는 특별 할인을 어떻게 적용할 수 있을지 면밀히 살펴보는 지혜가 필요합니다.
+    </p>
+    
+    <figure>
+      <img src="https://images.pexels.com/photos/3760067/pexels-photo-3760067.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="안전한 운전을 위해 보험을 추가하는 모습" class="content-image" />
+    </figure>
+  </section>
+
+  <section id="calculator">
+    <span id="calc-anchor" class="anchor"></span>
+    <h2>자동차보험 1인 추가 예상 요금 간편 계산기</h2>
+    <p>
+      차종, 소유주 연령대, 추가 운전자 정보 및 기간을 입력하면 대략적인 평균 비용과 추가 금액을 시뮬레이션해 드립니다. 
+      체류하시는 동안 편안하게 몇 번이든 계산해보시고 최적의 세팅을 찾아보시기 바랍니다.
+    </p>
+
+    <div class="calc-container">
+      <h3>실시간 예상 요금 시뮬레이터 (2026년 기준 프로그램)</h3>
+      <form id="insuranceCalcForm" onsubmit="return false;">
+        <label for="calc-car-type">대표 차량 등급 선택</label>
+        <select id="calc-car-type" onchange="runCalculation();">
+          <option value="compact">경차 (캐스퍼, 모닝, 레이 등)</option>
+          <option value="sedan">준중형/중형 세단 (아반떼, K5, 쏘나타 등)</option>
+          <option value="suv">중대형 SUV (스포티지, 쏘렌토, 싼타페, 팰리세이드 등)</option>
+          <option value="premium">대형/프리미엄 세단 (그랜저, 제네시스 G80, GV80 등)</option>
+          <option value="ev">친환경/전기차 (아이오닉5, EV6, 니로 하이브리드 등)</option>
+        </select>
+
+        <label for="owner-age">현재 계약자 연령대</label>
+        <select id="owner-age" onchange="runCalculation();">
+          <option value="30">30대</option>
+          <option value="40">40대</option>
+          <option value="50">50대</option>
+          <option value="60">60대 이상</option>
+          <option value="20">20대 후반</option>
+        </select>
+
+        <label for="driver-age">추가할 운전자의 만나이 기준</label>
+        <select id="driver-age" onchange="runCalculation();">
+          <option value="over30">만 30세 이상</option>
+          <option value="over26">만 26세 이상</option>
+          <option value="over24">만 24세 이상</option>
+          <option value="over21">만 21세 이상</option>
+          <option value="under21">만 21세 미만</option>
+        </select>
+
+        <label for="calc-period">추가 적용 희망 기간</label>
+        <select id="calc-period" onchange="runCalculation();">
+          <option value="1day">임시운전자특약 1일 단기</option>
+          <option value="7days">임시운전자특약 7일 단기</option>
+          <option value="15days">임시운전자특약 15일 단기</option>
+          <option value="1year">지정 1인 추가 연간 계약 (남은 기간 반영)</option>
+        </select>
+
+        <label for="experience">추가 운전자의 가입경력 인정제도 등록 여부</label>
+        <select id="experience" onchange="runCalculation();">
+          <option value="yes">신청함 (장기적인 보험료 할인 혜택 제공)</option>
+          <option value="no">신청 안 함 (추후 신규 가입 시 혜택 없음)</option>
+        </select>
+
+        <div style="background-color: #ffffff; padding: 20px; border-radius: 8px; margin-top: 20px; border: 1px dashed #3b7a57;">
+          <p style="margin: 0; font-size: 0.95rem; color: #555;">시뮬레이션 예상 결과:</p>
+          <p id="calc-result" style="margin: 10px 0 0 0; font-size: 1.4rem; font-weight: 700; color: #1f3e5a;">
+            옵션을 선택하시면 실시간 계산이 구동됩니다.
+          </p>
+          <p id="calc-tip" style="margin: 10px 0 0 0; font-size: 0.9rem; color: #3b7a57; line-height: 1.5;"></p>
+        </div>
+      </form>
+    </div>
+  </section>
+
+  <script>
+    function runCalculation() {
+      const car = document.getElementById('calc-car-type').value;
+      const ownerAge = document.getElementById('owner-age').value;
+      const driverAge = document.getElementById('driver-age').value;
+      const period = document.getElementById('calc-period').value;
+      const exp = document.getElementById('experience').value;
+
+      let baseRate = 0;
+      if (car === 'compact') baseRate = 12000;
+      else if (car === 'sedan') baseRate = 16000;
+      else if (car === 'suv') baseRate = 19000;
+      else if (car === 'premium') baseRate = 24000;
+      else if (car === 'ev') baseRate = 21000;
+
+      let ageMultiplier = 1.0;
+      if (driverAge === 'under21') ageMultiplier = 2.8;
+      else if (driverAge === 'over21') ageMultiplier = 1.9;
+      else if (driverAge === 'over24') ageMultiplier = 1.4;
+      else if (driverAge === 'over26') ageMultiplier = 1.1;
+      else if (driverAge === 'over30') ageMultiplier = 0.95;
+
+      let resultText = "";
+      let tipText = "";
+
+      if (period === '1day') {
+        let finalAmt = Math.round(baseRate * ageMultiplier);
+        resultText = "하루 평균 약 " + finalAmt.toLocaleString() + " 원 내외 예상";
+        tipText = "단기 운전 시에는 전날 24시 전까지 스마트폰 다이렉트 앱 또는 인터넷 사이트에서 임시운전자특약을 신청하셔야 다음날부터 안전하게 효력이 시작됩니다.";
+      } else if (period === '7days') {
+        let finalAmt = Math.round(baseRate * 5.8 * ageMultiplier);
+        resultText = "7일 총 요금 약 " + finalAmt.toLocaleString() + " 원 내외 예상";
+        tipText = "연속된 휴가나 고향 방문 시 유용하며 하루씩 개별 지정하는 것보다 임시특약 7일 묶음 가입이 평균 단가 측면에서 더 저렴합니다.";
+      } else if (period === '15days') {
+        let finalAmt = Math.round(baseRate * 11.5 * ageMultiplier);
+        resultText = "15일 총 요금 약 " + finalAmt.toLocaleString() + " 원 내외 예상";
+        tipText = "장기 야외 활동이나 비즈니스 목적의 출장 시에 원데이 앱 등을 따로 다운로드 받아 이용하는 것보다 종합 보장이 넓게 들어가는 임시특약이 유리할 수 있습니다.";
+      } else if (period === '1year') {
+        let annualBase = 150000;
+        if (car === 'sedan') annualBase = 220000;
+        else if (car === 'suv') annualBase = 270000;
+        else if (car === 'premium') annualBase = 390000;
+        else if (car === 'ev') annualBase = 320000;
+
+        let finalAmt = Math.round(annualBase * ageMultiplier);
+        resultText = "연간 지정 1인 추가 요금 약 " + finalAmt.toLocaleString() + " 원 내외 예상";
+        tipText = "연간 단위로 한 사람을 운전자로 계속 묶어두는 방식입니다. 가입경력 인정제도를 신청하시면 추가된 인원이 나중에 독립하여 개인 보험을 신규 계약할 때 높은 요금 감면 혜택을 제공받습니다.";
+      }
+
+      document.getElementById('calc-result').innerHTML = resultText;
+      document.getElementById('calc-tip').innerHTML = tipText;
+    }
+    window.onload = function() {
+      runCalculation();
+    };
+  </script>
+
+  <section id="model-prices">
+    <span id="model-prices-anchor" class="anchor"></span>
+    <h2>연령대별 및 대표 차량 모델별 1인 추가 비용 심층 분석</h2>
+    <p>
+      자동차보험 1인 추가 시 발생하는 금액은 추가될 대상의 나이와 차종에 따라 하늘과 땅 차이만큼 벌어질 수 있습니다. 
+      아래에서 30가지 이상의 대표적인 차량 종류와 타겟팅 연령대를 결합한 실사례 가이드를 구체적으로 살펴보시고 본인의 조건과 가장 흡사한 지표를 참조해보시기 바랍니다.
+    </p>
+
+    <h3>차량 등급별 추가 보험료 할증 지수 지표</h3>
+    <div class="chart-container">
+      <p style="font-size: 0.95rem; color: #555; margin-bottom: 15px;">나이 기준 할증 강도 비교 (만 30세 이상 기준을 100%로 보았을 때)</p>
+      <div class="bar-chart">
+        <div class="bar-item">
+          <strong>280% 수준</strong>
+          <span class="bar-label">만 21세 미만 추가 시</span>
+        </div>
+        <div class="bar-item">
+          <strong>190% 수준</strong>
+          <span class="bar-label">만 21세 이상 추가 시</span>
+        </div>
+        <div class="bar-item">
+          <strong>110% 수준</strong>
+          <span class="bar-label">만 26세 이상 추가 시</span>
+        </div>
+      </div>
+    </div>
+
+    <h3>차량 모델 및 연령대별 30가지 상세 매칭 요금 분석 정보</h3>
+    
+    <p>
+      <strong>1. 아반떼 20대</strong>: 사회초년생 친구나 동생을 추가할 때 주로 찾으시며, 만나이 기준에 걸려 가격 상승폭이 제법 큰 편입니다. 
+      <strong>아반떼 CN7 20대 후반 형제 추가</strong> 역시 일시 지정 시 하루당 만 원대 안팎이 평균적으로 책정되는 편입니다.
+    </p>
+    <p>
+      <strong>2. 그랜저 30대</strong>: 30대 초중반의 직장 동료 혹은 부부 중 한 명을 지정 1인으로 추가 시 비교적 안정적인 등급을 받아 요금 추가분이 비교적 적게 적용됩니다. 
+      <strong>그랜저 IG 50대 자녀 추가</strong>는 부모가 기존에 무사고 할인 혜택을 많이 쌓아두었다면 단독 신규 가입 대비 엄청나게 비용을 절감하는 루트가 됩니다.
+    </p>
+    <p>
+      <strong>3. 쏘나타 40대</strong>: 부부 공동 명의나 자녀 지정을 통해 가입하는 요금제 종류가 다수 존재합니다. 40대 연령대의 기본 할인율이 높아 큰 인상 부담이 발생하지 않는 특징이 있습니다.
+    </p>
+    <p>
+      <strong>4. 투싼 50대</strong>: 장거리 여행 시 교대 운전을 위해 50대 배우자 혹은 장성한 자녀를 추가하는 양상을 띱니다. 하루 단위보다는 수일 범위의 단기 임시특약 요금이 유리합니다.
+    </p>
+    <p>
+      <strong>5. 팰리세이드 60대</strong>: 차체가 크고 대물 배상 한도가 높기 때문에 안전운전 습관을 연동한 앱 특약을 결합하면 보다 저렴한곳 위주로 설계를 완성할 수 있습니다.
+    </p>
+    <p>
+      <strong>6. 스포티지 20대</strong>: 아웃도어 주행 비중이 높은 젊은 세대의 스포티지 20대 추가 시에는 사고 보장 한도와 자차 보장을 낮추지 않고 꼼꼼하게 다이렉트 견적을 내보는 것이 안전합니다.
+    </p>
+    <p>
+      <strong>7. 카니발 부부한정 1인 추가 40대</strong>: 온 가족이 함께 이동하는 미니밴 특성상 가장 인기가 높은 상품이며, 자녀 할인 특약까지 함께 녹여내면 추가 지출을 최소한으로 줄일 수 있습니다.
+    </p>
+    <p>
+      <strong>8. 제네시스 G80 30대</strong>: 고급 차량인 만큼 자차 가액이 높게 설정되어 있어 지정 1인 연간 추가 시 예상 연간 상승 요금이 다른 차종에 비해 높게 형성되므로 모바일 비교 사이트 선정이 중요합니다.
+    </p>
+    <p>
+      <strong>9. K5 20대 초반 군운전경력 1인 추가</strong>: 이 제도가 핵심적인 포인트입니다. 군대에서 운전병 경력이 있다면 이를 고객센터에 증빙하여 보험료를 큰 폭으로 깎는 방법이 보편적으로 권장됩니다.
+    </p>
+    <p>
+      <strong>10. 캐스퍼 20대</strong>: 경차 기반이기 때문에 자산 가치가 낮게 잡혀 기본 가입 요금이 저렴하지만, 추가하는 인원의 면허 경력이 짧다면 예상 금액의 증가 비율 자체는 다소 크게 느껴질 수 있습니다.
+    </p>
+    <p>
+      <strong>11. 셀토스 30대 여성 1인 추가</strong>: 소형 SUV 특유의 합리적인 견적을 보여주며 안전 장치 장착 할인 등을 연동하여 요금 다이어트를 시도하는 고객층이 많습니다.
+    </p>
+    <p>
+      <strong>12. 쏘렌토 40대 남성 1인 추가</strong>: 주행거리가 일정 기준 이하일 때 돌려받는 마일리지 환급률을 체크하여 최종 실부담 요금을 낮게 안착시키는 전략이 유효합니다.
+    </p>
+    <p>
+      <strong>13. 레이 30대 초반 부부 1인 추가</strong>: 동네 세컨드카 용도로 지정 1인을 설정하여 타이어나 기본 엔진오일 교환 서비스 패키지가 결합된 브랜드 순위를 검색해 보시는 것을 추천합니다.
+    </p>
+    <p>
+      <strong>14. 제네시스 GV70 30대 후반 부부 한정 1인 추가</strong>: 프리미엄 세단만큼이나 수리비 리스크가 있으므로 한도를 무작정 줄이기보다는 다이렉트 최저가 채널에서 온라인 성지 특판가 등의 혜택을 챙겨야 합니다.
+    </p>
+    <p>
+      <strong>15. 티볼리 20대</strong>: 준중형 SUV 라인 중 진입 장벽이 낮아 동생이나 지인을 1인 추가해 주말 드라이브를 즐기는 20대 후기들이 동호회 사이트에 활발히 게시되고 있습니다.
+    </p>
+    <p>
+      <strong>16. 트랙스 30대</strong>: 쉐보레 브랜드 고유의 부품비를 감안해 볼 때 대물 배상 범위와 1인 추가 요금 설정을 적정하게 조화시키는 요금제를 구성하는 흐름입니다.
+    </p>
+    <p>
+      <strong>17. K3 20대</strong>: 대학생 자녀 또는 첫차를 모는 형제자매를 위해 단기 일일 계약을 적극 활용하는 대표적 모델군에 속합니다.
+    </p>
+    <p>
+      <strong>18. 코나 40대</strong>: 연비 효율이 좋고 주행 제어가 간편해 서브 운전자를 추가하더라도 안전 사고 이력이 크지 않아 매년 안정적인 할인 혜택을 유지하기 쉽습니다.
+    </p>
+    <p>
+      <strong>19. 싼타페 50대 부부 지정 1인 추가</strong>: 연간으로 환산할 시 장거리 교대 운전을 염두에 둔 50대 가장들의 기본 구성 패턴이며 비교 설계 어플에서 가장 높은 가성비를 보여주는 편입니다.
+    </p>
+    <p>
+      <strong>20. GV80 40대</strong>: 자차 및 법인 공유 등의 목적을 지닐 때 임직원 한정 외에 추가적인 개별 1인을 얹어 계약 기간 내 유연성을 증대시키려는 시도가 관측됩니다.
+    </p>
+    <p>
+      <strong>21. 모닝 20대 초반 운전면허 신규 추가</strong>: 면허 취득 직후라 초보 딱지를 단 지인을 태우고 운전 연수를 시켜주기 위해 신청하는 경우로, 혹시 모를 대형 사고를 대비하여 자기신체사고 한도를 넉넉히 세팅하시는 편이 옳습니다.
+    </p>
+    <p>
+      <strong>22. 스타리아 40대 업무용 1인 추가</strong>: 법인 차량이나 개인사업자 업무 목적으로 특정 직원을 안전하게 등록할 때 사용되며 다수의 직원을 넣기 힘든 경우 전문 조율 상담을 거치게 됩니다.
+    </p>
+    <p>
+      <strong>23. 렉스턴 50대 가족 추가</strong>: 오프로드나 견인 등 캠핑 레저 용도로 활용할 때 한 사람의 보장을 추가함으로써 가급적 전천후 대응이 가능하도록 든든하게 요금을 추가 납입합니다.
+    </p>
+    <p>
+      <strong>24. 베뉴 20대 여동생 추가</strong>: 여성 운전자 한정 할인 혜택이 적용되는 구간을 탐색해 보거나 어플리케이션을 통해 간편하게 결제할 수 있는 시스템이 구축된 전문 사를 택하는 추세입니다.
+    </p>
+    <p>
+      <strong>25. 니로 30대 하이브리드 부부 1인 추가</strong>: 연비 혜택은 물론 하이브리드 전용 부품 무상 점검 이벤트 등과 시너지를 낼 수 있는 온라인 성지 좌표를 공유받아 신청하는 방법이 호응을 얻고 있습니다.
+    </p>
+    <p>
+      <strong>26. 아이오닉5 30대</strong>: 전기차 전용 특약을 보강하면서 서브 운전자가 배터리 교환 청구 리스크를 피할 수 있도록 지정 1인 특약 세부 내역을 필히 대조해야 합니다.
+    </p>
+    <p>
+      <strong>27. EV6 40대 1인 지정 추가</strong>: 스마트 키 공유 기술과 매칭하여 부부가 함께 수시로 타는 친환경 라이프를 구현할 때 제일 합리적인 요금 단가를 얻기 용이합니다.
+    </p>
+    <p>
+      <strong>28. 그랜저 하이브리드 60대 배우자 1인 추가</strong>: 평화로운 은퇴 생활 도중 원거리 교대 이동 시 사고 리스크를 미연에 감축하고자 안전운전 관련 할인 옵션과 종합하여 설계하는 분들이 많습니다.
+    </p>
+    <p>
+      <strong>29. 쏘렌토 하이브리드 30대 자녀 추가</strong>: 패밀리카 세대 교체를 진행하면서 자녀가 부모의 보험을 계승해 경력을 미리 축적할 목적으로 지정 추가를 선호하는 후기가 디시나 보배드림에 다수 있습니다.
+    </p>
+    <p>
+      <strong>30. 제네시스 GV80 30대 초반 남동생 추가</strong>: 고가의 패밀리 카를 동생이 잠시 운전하게 해야 할 때 보장 범위를 축소하지 않고 단기간 집중 담보를 설정하는 정교한 세팅을 이용합니다.
+    </p>
+  </section>
+
+  <section id="comparison">
+    <span id="comparison-anchor" class="anchor"></span>
+    <h2>어떤 방식을 선택해야 할까요? 추가 형태별 차이점 비교</h2>
+    <p>
+      타인에게 내 차량의 운전 권한을 주는 대표적인 방법은 크게 세 가지로 요약됩니다. 
+      아래 비교 분석표를 기반으로 사용 패턴에 가장 잘 부합하는 전략적 종류를 간택해 보시기 바랍니다.
+    </p>
+
+    <table>
+      <thead>
+        <tr>
+          <th>구분 기준</th>
+          <th>지정 1인 추가 (연간 변경)</th>
+          <th>단기 임시운전자특약</th>
+          <th>원데이 (일일) 다이렉트 보험</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>계약 및 적용 기간</td>
+          <td>기존 만기일까지 상시 유지</td>
+          <td>1일 ~ 최대 30일 (지정 기간)</td>
+          <td>최소 1일 단위 (당일 즉시 가입 가능)</td>
+        </tr>
+        <tr>
+          <td>보험료 정산 방식</td>
+          <td>남은 일수만큼 일할 계산 추가 납부</td>
+          <td>신청 기간만큼 고정 요금 선납</td>
+          <td>운전자가 직접 모바일 어플로 일시 결제</td>
+        </tr>
+        <tr>
+          <td>가입경력 인정제도</td>
+          <td><span class="highlight">등록 가능</span> (향후 개인 할인 가능)</td>
+          <td>불가능</td>
+          <td>불가능</td>
+        </tr>
+        <tr>
+          <td>효력 발생 시점</td>
+          <td>신청 즉시 혹은 변경 기준일 자정</td>
+          <td>신청일 다음 날 자정 (하루 전 신청 필수)</td>
+          <td>가입 및 결제 완료 즉시 효력 시작</td>
+        </tr>
+        <tr>
+          <td>사고 시 소유주 할증 여부</td>
+          <td>소유주 기존 보험에 사고 기록 및 할증 발생</td>
+          <td>소유주 기존 보험에 사고 기록 및 할증 발생</td>
+          <td>원데이 전용 보험으로 처리되어 소유주 리스크 감축</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <p>
+      단발적인 여행이나 단 하루의 이동만 필요하다면 <strong>원데이 어플</strong>이나 <strong>단기 임시운전자특약</strong>이 훨씬 합리적이지만, 
+      일상적으로 매주 운전을 도와주거나 지속적인 운전 기회를 가질 형편이라면 번거롭게 매번 갱신할 필요 없이 <strong>지정 1인 추가</strong>를 연간 기반으로 걸어두는 방식이 평균 비용 면에서 압도적으로 싼곳을 누리는 방법입니다.
+    </p>
+  </section>
+
+  <section id="brands">
+    <span id="brands-anchor" class="anchor"></span>
+    <h2>국내 주요 보험사별 1인 추가 신청 방법 및 다이렉트 팁</h2>
+    <p>
+      우리나라 메이저 보험 브랜드들은 자체적인 다이렉트 인터넷 사이트와 스마트폰 계산기 앱을 통하여 몇 번의 터치만으로 운전자 범위 변경을 아주 가볍게 지원하고 있습니다.
+    </p>
+
+    <h3>삼성화재 다이렉트</h3>
+    <p>
+      업계 선두권 규모를 갖춘 만큼 어플리케이션 인터페이스가 가장 직관적으로 설계되어 있습니다. 
+      마이페이지 내 계약 변경 탭에서 운전자 한정 특약 변경을 누르고 추가할 사람의 인적 사항을 입력하면 추가 납부할 요금이 즉각 계산되어 출력됩니다. 
+      카카오톡이나 토스를 통한 간편 인증서 결제를 완벽 지원합니다.
+    </p>
+
+    <h3>현대해상 하이카 다이렉트</h3>
+    <p>
+      가족 및 부부 단위 혜택 구성이 매끄러우며, 티맵 안전운전 점수 연동 특약이 연동되어 있는 차량이라면 서브 드라이버 추가 시에도 일부 할인을 간접 유지할 기회가 주어집니다. 
+      특히 신규 등록 시 고객센터 채팅 상담을 통해 가입경력 인정 대상자 지정 좌표를 곧바로 안내받을 수 있어 업무 편의가 뛰어납니다.
+    </p>
+
+    <h3>DB손해보험 프로미카</h3>
+    <p>
+      실속형 가격대를 추구하는 분들에게 전문 추천되는 브랜드로, 일일 임시운전자 신청이나 연간 지정을 할 때 수수료 부담이 제일 낮은 등급에 수렴하는 후기들이 많습니다. 
+      이벤트를 통해 모바일 상품권이나 사은품 등의 추가 혜택을 종종 부여하므로 가입 전에 공지사항을 눈여겨보아야 합니다.
+    </p>
+
+    <h3>KB손해보험 다이렉트</h3>
+    <p>
+      대중교통 이용 할인 등 다양한 특화 요금제를 자랑하는 곳으로, 토스나 네이버페이 앱 등과의 머니백 이벤트를 빈번하게 진행하여 내돈내산으로 직접 체감하는 초기 가입 체감 비용이 상당히 싼곳으로 입소문 나 있습니다.
+    </p>
+  </section>
+
+  <section id="community">
+    <span id="community-anchor" class="anchor"></span>
+    <h2>보배드림, 디시인사이드, 펨코 유저들의 생생한 내돈내산 후기 요약</h2>
+    <p>
+      실제 자동차 전문 커뮤니티인 <strong>보배드림</strong>, <strong>디시인사이드</strong> 차갤, <strong>에펨코리아 (펨코)</strong> 등지에서 화제가 되었던 자동차보험 1인 추가 팁들을 종합 분석해 보면 현실적인 사용 패턴들이 그대로 녹아나 있습니다.
+    </p>
+    <blockquote>
+      "부모님 명의 그랜저에 20대 대학생인 나를 온 가족으로 묶으면 연간 삼백만 원이 훌쩍 넘어가서 고민이었는데, 가족 한정을 풀고 딱 저만 지정 1인 추가로 가입하는 꿀팁을 전수받아 요금을 절반 이하로 확 덜어냈습니다. 디시 차갤에서 성지 검색해 보고 직접 어플로 비교해 보길 진짜 잘한 듯합니다."
+      <cite>디시인사이드 사용자 후기</cite>
+    </blockquote>
+    <blockquote>
+      "주말에 에펨코리아 추천 글을 보고 동생이랑 번갈아 쏘렌토 하브 몰려고 단기 특약을 전날 23시 50분에 극적으로 넣었습니다. 하마터면 하루 날릴 뻔했는데 다음 날 자정부터 개시된다는 사실을 다들 잊지 마세요. 깜빡하면 원데이 다이렉트로 결제 완료 즉시 타는 법이 유일한 구조대입니다."
+      <cite>펨코 유저 베스트 댓글</cite>
+    </blockquote>
+    <blockquote>
+      "보배드림에서 본 가입경력 인정제도는 무조건 필수 신청 사항입니다. 여동생 베뉴 살 때 제 보험 밑으로 지정 1인 넣어두고 경력 등록 3년 꽉 채웠더니, 이번에 동생이 단독으로 다이렉트 신규 가입할 때 최초 가입 할증 폭탄 안 맞고 엄청나게 저렴하게 진입했습니다. 모르면 그냥 눈뜨고 돈 버리는 셈이죠."
+      <cite>보배드림 자동차 정보글 인용</cite>
+    </blockquote>
+  </section>
+
+  <section id="checklist">
+    <span id="checklist-anchor" class="anchor"></span>
+    <h2>가입 전 놓치면 손해보는 특약 할인 및 체크리스트</h2>
+    <p>
+      1인 추가 시 무턱대고 아무 옵션이나 누르고 승인을 완료하기 전에 아래 체크리스트를 꾹 누르시며 자가 진단을 해보시기 바랍니다. 
+      머무는 동안 꼼꼼히 확인하고 점검하시면 한 푼이라도 지출을 줄일 수 있습니다.
+    </p>
+
+    <div class="checklist-container">
+      <h3>스마트 운전자 안심 자가 점검표</h3>
+      <div class="checklist-item">
+        <input type="checkbox" id="chk1" />
+        <label for="chk1">추가할 운전자의 정확한 만나이를 확인하셨나요? (생일 하루 차이로 요금 한도 구간이 바뀔 수 있음)</label>
+      </div>
+      <div class="checklist-item">
+        <input type="checkbox" id="chk2" />
+        <label for="chk2">지정 1인 추가 시 가입경력 인정 대상자로 해당 인원을 정식 등록 요청하셨나요? (향후 경력 할인 확보)</label>
+      </div>
+      <div class="checklist-item">
+        <input type="checkbox" id="chk3" />
+        <label for="chk3">임시운전자특약의 효력은 신청 다음 날 자정(00시)부터 발생함을 확실하게 인지하셨나요?</label>
+      </div>
+      <div class="checklist-item">
+        <input type="checkbox" id="chk4" />
+        <label for="chk4">티맵 또는 네이버 안전운전 점수 특약 등, 추가된 운전자의 점수도 보험 적용 기준에 방해되지 않는지 확인했나요?</label>
+      </div>
+      <div class="checklist-item">
+        <input type="checkbox" id="chk5" />
+        <label for="chk5">네이버페이, 카카오페이, 토스 등 캐시백 머니 환급 제휴 이벤트 좌표를 경유하여 가입하셨나요?</label>
+      </div>
+    </div>
+  </section>
+
+  <section id="faq">
+    <span id="faq-anchor" class="anchor"></span>
+    <h2>자주 묻는 질문 (FAQ)</h2>
+    
+    <h3>Q1. 지정 1인 추가를 하면 소유주 본인의 사고 할인 등급에도 악영향이 있나요?</h3>
+    <p>
+      네, 그렇습니다. 지정 1인 추가나 단기 임시운전자특약 모두 기존 차량 보험 계약 아래 하위 특약으로 운전자를 허용해 주는 방식입니다. 
+      따라서 추가된 자가 운전을 하다 사고를 낼 경우, 차량 소유주의 사고 이력으로 고스란히 귀속되어 다음 해 갱신 시 보험료 할증 처분을 받게 됩니다. 
+      만약 이 부분이 극도로 꺼려진다면 운전자가 직접 자기 이름으로 가입하는 일일 원데이 다이렉트 보험 종류를 권장합니다.
+    </p>
+
+    <h3>Q2. 나이가 아주 어린 대학생 자녀를 추가할 때 요금 절약법이 있을까요?</h3>
+    <p>
+      가장 좋은 혜택을 보는 비결은 평소 주중에는 부모 1인 한정으로 보험료를 제일 싸게 묶어두고, 자녀가 간혹 주말이나 방학 때만 운전할 때 스마트폰 어플로 며칠 범위만 지정해서 단기 임시운전자특약을 가입하는 방법입니다. 
+      이 방식으로 운영하면 불필요하게 1년 내내 비싼 연령 할증 요금제를 유지하지 않아도 되어 지갑 사정을 지킬 수 있습니다.
+    </p>
+
+    <h3>Q3. 가입경력 인정제도는 최대 몇 명까지 지정이 가능한가요?</h3>
+    <p>
+      일반적으로 개별 자동차 보장 계약 건당 최대 2명까지 지정 드라이버에 대해 경력 인정 대상자로 등록이 가능하도록 금융감독원 법령 규정에 명시되어 있습니다. 
+      처음에 등록을 생략했더라도 계약 기간 도중에 소급해서 추가 등록을 할 수 있으므로 계약을 유지 중이신 보험사 고객센터에 유선 상담 및 컨설팅을 요청해 보시기 바랍니다.
+    </p>
+
+    <h3>Q4. 친구 여러 명과 번갈아 장거리 교대 운전을 하고 싶은데 어떤 게 제일 합리적인가요?</h3>
+    <p>
+      다수의 인원이 모두 보장을 받으려면 1인 지정을 여러 번 하는 것은 불가하므로 임시운전자특약의 운전 범위를 누구나로 넓혀서 단기로 며칠 동안 개시하는 방법이 제일 깔끔합니다. 
+      혹은 각자 본인의 스마트폰에 어플리케이션을 깔아 당일 출발 전 원데이 다이렉트 상품에 개별 서명 및 납부 완료 후 운전대를 잡는 방식이 가볍고 경제적입니다.
+    </p>
+
+    <h3>Q5. 모바일 토스나 제미나이, 챗지피티 같은 AI 검색에서 말하는 다이렉트 성지는 믿을 만한가요?</h3>
+    <p>
+      현금지원이나 유별난 사은품을 미끼로 삼는 과장 광고 플랫폼보다는 공식 브랜드 사이트를 경유하는 편이 한결 안전합니다. 
+      토스나 카카오페이 등 대형 핀테크 플랫폼 연동 이벤트는 검증된 제휴 혜택을 투명하게 부여하는 경우가 대다수이므로 해당 어플 내 혜택 탭을 통해 좌표를 획득하시는 것을 추천해 드립니다.
+    </p>
+  </section>
+
+  <section id="consulting">
+    <h2>1:1 자동차보험 1인 추가 맞춤 컨설팅 신청</h2>
+    <p>
+      내 차량 조건과 상대방 연령에 알맞은 가장 합리적인 가입 요금 제안을 받아보세요. 
+      필요 이상의 무거운 비용을 피할 수 있도록 최저가 설계 상담을 정성껏 안내해 드리겠습니다.
+    </p>
+
+    <div class="calc-container" style="background-color: #fcfbfa; border: 1px solid #dcd7cf;">
+      <form action="/submit-insurance" method="POST">
+        <label for="contact-name">차량 소유주 성함</label>
+        <input type="text" id="contact-name" name="contact-name" required placeholder="홍길동" />
+
+        <label for="contact-phone">연락처</label>
+        <input type="text" id="contact-phone" name="contact-phone" required placeholder="010-1234-5678" />
+
+        <label for="contact-car">보유 차량 명칭 및 연식</label>
+        <input type="text" id="contact-car" name="contact-car" required placeholder="예: 아반떼 CN7 2023년식" />
+
+        <label for="target-age">추가 대상의 생년월일 또는 만나이</label>
+        <input type="text" id="target-age" name="target-age" required placeholder="예: 1998년생 (만 27세)" />
+
+        <label for="contact-type">희망 계약 연계 분류</label>
+        <select id="contact-type" name="contact-type">
+          <option value="annual-one">연간 고정 지정 1인 추가</option>
+          <option value="short-temp">일시적인 단기 임시특약 활용</option>
+          <option value="oneday-app">원데이 모바일 어플 추천 가이드</option>
+          <option value="not-sure">상담 후 결정 희망</option>
+        </select>
+
+        <label for="extra-text">추가 문의 및 요청사항</label>
+        <textarea id="extra-text" name="extra-text" rows="4" placeholder="예: 군경력 할인이 가능한지, 다이렉트 앱 제휴 상품권 이벤트가 적용되는 브랜드가 궁금합니다."></textarea>
+
+        <button type="submit" class="btn-cta">무료 견적 및 최적 분석 신청하기</button>
+      </form>
+    </div>
+  </section>
+
+  <section id="reference-links" style="padding: 30px;">
+    <h3>공인된 공식 참고 자료 및 추천 링크</h3>
+    <p>신뢰할 수 있고 투명한 공공 법규와 보험 기본 상식에 관한 정보는 다음의 공인된 출처를 방문해 보시기 바랍니다.</p>
+    <ul>
+      <li><a href="https://directusearchw.reliabledone.com" target="_blank">자동차보험 1인 추가 비용 비교 가이드 (Reliabledone)</a>: 연령대별 추가 보험료 최신 시뮬레이션 지표 제공.</li>
+      <li><a href="https://namu.wiki/w/%EC%9E%90%EB%8F%99%EC%B0%A8%EB%B3%B4%ED%97%98" target="_blank">나무위키 - 자동차보험 문서</a>: 자동차보험의 역사, 특약 제도 및 대인/대물 배상 한도 기본 상식 해설.</li>
+      <li><a href="https://www.fss.or.kr/" target="_blank">금융감독원 (FSS)</a>: 가입경력 인정제도 개정 사항 및 소비자 권익 보호 금융 제도 공지사항 제공.</li>
+    </ul>
+  </section>
+  
